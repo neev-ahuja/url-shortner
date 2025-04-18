@@ -38,6 +38,9 @@ app.use(cors());
 app.use('/url' , url);
 
 
-app.listen(3000, function () {
-  console.log("Server started on :3000");
-});
+// app.listen(3000, function () {
+//   console.log("Server started on :3000");
+// });
+
+const serverless = require("serverless-http");
+module.exports = serverless(app);
