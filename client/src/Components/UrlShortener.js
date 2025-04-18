@@ -1,15 +1,21 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const UrlShortener = () => {
   const [longUrl, setLongUrl] = useState("");
   const [shortUrl, setShortUrl] = useState("");
 
+  location = useLocation();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!longUrl.startsWith("http")) {
+
+    if (!longUrl.startsWith("http")) {  
       alert("Please enter a valid URL starting with http or https");
       return;
     }
+
+
 
     (async () => {
         try {
@@ -27,7 +33,8 @@ const UrlShortener = () => {
             }
 
             const result = await response.json();
-            setShortUrl("http://localhost:3000/" + result.id);
+            // setShortUrl("http://localhost:3000/" + result.id);
+            setShortUrl(location.pathname + result.id); 
         } catch (error) {
             console.error('Error fetching data:', error);
         }
